@@ -24,7 +24,7 @@ def match_curr(currency, text):
         rest_text = text[posn:]
         curr_val = re.search(r'<strong> (\d+,\d+) </strong>', rest_text)
     elif currency == "TRY" or currency == "RUB" or currency == "USD":
-        posn = text.find('<span> '+currency+' </span>	 </div>')
+        posn = text.find('<span> '+currency+'</span>	 </div>')
         rest_text = text[posn:]
         curr_val = re.search(r'<strong> (\d+,\d+) </strong>', rest_text)
     return curr_val
