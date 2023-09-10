@@ -78,12 +78,19 @@ print(list_curr_val)
 list_curr_dot = replace_to_dot(list_curr_val)
 print(list_curr_dot)
 
-#list_curr_float = []    
-#for s in list_curr_val2:
-#    if s[1] == "can't get value":
-#        list_curr_float.append((s[0],s[1]))
-#    else:
-#        list_curr_float.append((s[0], float(s[1])))
+list_curr_float = []
+    
+def str_to_float(list_c_d):
+    list_c_f = []
+    for i in list_c_d:
+        if i[1] == "can't get value":
+            list_c_f.append((i[0],i[1]))
+        else:
+            list_c_f.append((i[0], float(i[1])))
+    return list_c_f
+
+list_curr_float = str_to_float(list_curr_dot)
+print(list_curr_float)
 
 #convert list to dict
 #for i in list_curr_float:
