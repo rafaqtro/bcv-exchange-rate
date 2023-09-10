@@ -54,34 +54,46 @@ def get_value(re_match):
     return value
 
 
-for c in currency_list:
-    match_curr(c,text_decode) 
+#for c in currency_list:
+#    match_curr(c,text_decode) 
 
 list_curr_val = []
 
-for x in list_match:
-    list_curr_val.append((x[0],get_value(x[1])))
+def get_curr_val(list_c_re):
+    list_v = []
+    for i in list_c_re:
+        list_v.append((i[0],get_value(i[1])))
+    return list_v
 
-list_curr_val2 = []
-for v in list_curr_val:
-     list_curr_val2.append((v[0],v[1].replace(",",".")))
+list_curr_dot = []
 
-list_curr_float = []    
-for s in list_curr_val2:
-    if s[1] == "can't get value":
-        list_curr_float.append((s[0],s[1]))
-    else:
-        list_curr_float.append((s[0], float(s[1])))
+def replace_to_dot(list_v):
+    list_v_d = []
+    for i in list_v:
+         list_v_d.append((i[0],i[1].replace(",",".")))
+    return list_v_d
+
+list_curr_val = get_curr_val(list_match)
+print(list_curr_val)
+list_curr_dot = replace_to_dot(list_curr_val)
+print(list_curr_dot)
+
+#list_curr_float = []    
+#for s in list_curr_val2:
+#    if s[1] == "can't get value":
+#        list_curr_float.append((s[0],s[1]))
+#    else:
+#        list_curr_float.append((s[0], float(s[1])))
 
 #convert list to dict
-for i in list_curr_float:
-    cd = {'currency':i[0], 'val_ves':i[1]}
-    exchange.append(cd)
+#for i in list_curr_float:
+#    cd = {'currency':i[0], 'val_ves':i[1]}
+#    exchange.append(cd)
 
-print(list_curr_val)
-print(list_curr_val2)
-print(list_curr_float)
-print(exchange)
+#print(list_curr_val)
+#print(list_curr_val2)
+#print(list_curr_float)
+#print(exchange)
 
 
 def show(u, d, cs):
