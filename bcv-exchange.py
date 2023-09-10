@@ -2,6 +2,7 @@ from urllib.request import urlopen
 import re
 
 bcv = "http://www.bcv.org.ve/"
+exchange = []
 
 try:
     content = urlopen(bcv)
@@ -35,13 +36,26 @@ test_try  = match_curr('TRY', text_decode)
 test_rub  = match_curr('RUB', text_decode)
 test_usd  = match_curr('USD', text_decode)
 
+currency_list = ['EUR', 'CNY', 'TRY', 'RUB', 'USD']
+list_match = []
 
+def match_curr_all(c_list,text_d,match_l):
+    for c in c_list:
+        match_l.append(match_curr(c,text_d))
+
+match_curr_all(currency_list,text_decode,list_match)
+print(list_match)
+        
 def get_value(re_match):
     if re_match:
         value = re_match.group(1)
     else:
         value = "can't get value"
     return value
+
+
+for c in currency_list:
+    match_curr(c,text_decode) 
 
 def show(u, d, cs):
     print("---------------------------")
