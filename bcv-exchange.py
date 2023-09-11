@@ -93,9 +93,33 @@ list_curr_float = str_to_float(list_curr_dot)
 print(list_curr_float)
 
 #convert list to dict
-#for i in list_curr_float:
-#    cd = {'currency':i[0], 'val_ves':i[1]}
-#    exchange.append(cd)
+def list_to_dict(list_cf):
+    list_exc = []
+    for i in list_cf:
+        cd = {'name': abb_to_c(i[0]), 'val_ves': i[1], 'symbol': abb_to_sy(i[0])}
+        list_exc.append(cd)
+    return(list_exc)
+
+#exchange = list_to_dict(list_curr_float)
+print (exchange)
+
+# Str -> Str
+# Given an abb return the name of currency abbreviation
+# Ex. EUR -> Euro
+# Ex. RUB -> Rubles
+def abb_to_c(abb):
+    return "test"
+
+# Str -> Str
+# Given an abb return the symbol of this currency abbreviation
+def abb_to_sy(abb):
+    return "test"
+
+exchange = list_to_dict(list_curr_float)
+print(exchange)
+
+exchange = list_to_dict(list_curr_float)
+print (exchange)
 
 #print(list_curr_val)
 #print(list_curr_val2)
