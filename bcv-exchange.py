@@ -96,7 +96,7 @@ print(list_curr_float)
 def list_to_dict(list_cf):
     list_exc = []
     for i in list_cf:
-        cd = {'name': abb_to_c(i[0]), 'val_ves': i[1], 'symbol': abb_to_sy(i[0])}
+        cd = {'currency': abb_to_c(i[0]), 'val_ves': i[1], 'abb':i[0], 'symbol': abb_to_sy(i[0])}
         list_exc.append(cd)
     return(list_exc)
 
@@ -124,8 +124,24 @@ assert abb_to_c("EUR") == "Euro"
 assert abb_to_c("CNY") == "Yuan"
 # Str -> Str
 # Given an abb return the symbol of this currency abbreviation
+# Ex. "EUR" -> "€"
+# Ex. "RUB" -> "₽"
+# "€" "₺" "¥" "₽" "$"
+
 def abb_to_sy(abb):
-    return "test"
+    if abb == "EUR":
+        return "€" 
+    if abb == "CNY": 
+        return "¥"
+    if abb == "TRY":
+        return "₺"
+    if abb == "RUB":
+        return "₽"
+    if abb == "USD":
+        return "$"
+
+assert abb_to_sy("RUB") == "₽"
+assert abb_to_sy("CNY") == "¥"
 
 exchange = list_to_dict(list_curr_float)
 print(exchange)
@@ -164,5 +180,11 @@ def show(u, d, cs):
 #show(rub_v, date_v,"₽")
 #show(usd_v, date_v,"$")
 
+
+"€"
+"₺"
+"¥"
+"₽"
+"$"
 
 
