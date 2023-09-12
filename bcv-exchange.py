@@ -107,9 +107,21 @@ print (exchange)
 # Given an abb return the name of currency abbreviation
 # Ex. EUR -> Euro
 # Ex. RUB -> Rubles
-def abb_to_c(abb):
-    return "test"
 
+def abb_to_c(abb):
+    if abb == "EUR":
+        return "Euro"
+    elif abb == "CNY":
+        return "Yuan"
+    elif abb == "TRY":
+        return "Turkish Lire"
+    elif abb == "RUB":
+        return  "Ruble"
+    elif abb == "USD":
+        return "United States dollar"
+
+assert abb_to_c("EUR") == "Euro"
+assert abb_to_c("CNY") == "Yuan"
 # Str -> Str
 # Given an abb return the symbol of this currency abbreviation
 def abb_to_sy(abb):
