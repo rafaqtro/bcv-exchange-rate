@@ -31,11 +31,6 @@ def match_curr(currency, text):
         curr_val = (currency, re.search(r'<strong> (\d+,\d+) </strong>', rest_text))
     return curr_val
 
-#test_euro = match_curr('EUR', text_decode)
-#test_cny  = match_curr('CNY', text_decode)
-#test_try  = match_curr('TRY', text_decode)
-#test_rub  = match_curr('RUB', text_decode)
-#test_usd  = match_curr('USD', text_decode)
 
 currency_list = ['EUR', 'CNY', 'TRY', 'RUB', 'USD']
 list_match = []
@@ -53,10 +48,6 @@ def get_value(re_match):
     else:
         value = "can't get value"
     return value
-
-
-#for c in currency_list:
-#    match_curr(c,text_decode) 
 
 list_curr_val = []
 
@@ -99,10 +90,7 @@ def list_to_dict(list_cf):
     for i in list_cf:
         cd = {'currency': abb_to_c(i[0]), 'val_ves': i[1], 'abb':i[0], 'symbol': abb_to_sy(i[0])}
         list_exc.append(cd)
-    return(list_exc)
-
-#exchange = list_to_dict(list_curr_float)
-print (exchange)
+    return list_exc
 
 # Str -> Str
 # Given an abb return the name of currency abbreviation
@@ -123,6 +111,7 @@ def abb_to_c(abb):
 
 assert abb_to_c("EUR") == "Euro"
 assert abb_to_c("CNY") == "Yuan"
+
 # Str -> Str
 # Given an abb return the symbol of this currency abbreviation
 # Ex. "EUR" -> "€"
@@ -155,43 +144,9 @@ exchange.append({'date':date_v})
 exchange_json = json.dumps(exchange, ensure_ascii=False)
 print(exchange_json)
 
-#print(date_v)
-#print(list_curr_val)
-#print(list_curr_val2)
-#print(list_curr_float)
-#print(exchange)
-
-
 def show(u, d, cs):
     print("---------------------------")
     print(f"{cs} BCV = {u} ")
     print(f"{d}")
     print("---------------------------")
-
-#eur_v = get_value(test_euro)
-#cny_v = get_value(test_cny)
-#try_v = get_value(test_try)
-#rub_v = get_value(test_rub)
-#usd_v = get_value(test_usd)
-#date_v = get_value(date)
-
-#change the form nn,nn to nn.nn
-# ex 33,33 to 33.33
-#usd_v2 = usd_v.replace(",",".")
-#usd_float = float(usd_v2)
-#usd_round = round(usd_float, 4)
- 
-#show(eur_v, date_v,"€")
-#show(cny_v, date_v,"¥")
-#show(try_v, date_v,"₺")
-#show(rub_v, date_v,"₽")
-#show(usd_v, date_v,"$")
-
-
-"€"
-"₺"
-"¥"
-"₽"
-"$"
-
 
