@@ -1,5 +1,6 @@
 from urllib.request import urlopen
 import re
+import json
 
 bcv = "http://www.bcv.org.ve/"
 exchange = []
@@ -44,7 +45,7 @@ def match_curr_all(c_list,text_d,match_l):
         match_l.append(match_curr(c,text_d))
 
 match_curr_all(currency_list,text_decode,list_match)
-print(list_match)
+#print(list_match)
         
 def get_value(re_match):
     if re_match:
@@ -74,9 +75,9 @@ def replace_to_dot(list_v):
     return list_v_d
 
 list_curr_val = get_curr_val(list_match)
-print(list_curr_val)
+#print(list_curr_val)
 list_curr_dot = replace_to_dot(list_curr_val)
-print(list_curr_dot)
+#print(list_curr_dot)
 
 list_curr_float = []
     
@@ -90,7 +91,7 @@ def str_to_float(list_c_d):
     return list_c_f
 
 list_curr_float = str_to_float(list_curr_dot)
-print(list_curr_float)
+#print(list_curr_float)
 
 #convert list to dict
 def list_to_dict(list_cf):
@@ -144,11 +145,17 @@ assert abb_to_sy("RUB") == "₽"
 assert abb_to_sy("CNY") == "¥"
 
 exchange = list_to_dict(list_curr_float)
-print(exchange)
-
-exchange = list_to_dict(list_curr_float)
 print (exchange)
 
+#add date 
+date_v = get_value(date)
+exchange.append({'date':date_v})
+
+#convert into  json
+exchange_json = json.dumps(exchange, ensure_ascii=False)
+print(exchange_json)
+
+#print(date_v)
 #print(list_curr_val)
 #print(list_curr_val2)
 #print(list_curr_float)
