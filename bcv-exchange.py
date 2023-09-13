@@ -46,7 +46,7 @@ def get_value(re_match):
     if re_match:
         value = re_match.group(1)
     else:
-        value = "can't get value"
+        value = None
     return value
 
 list_curr_val = []
@@ -62,7 +62,10 @@ list_curr_dot = []
 def replace_to_dot(list_v):
     list_v_d = []
     for i in list_v:
-         list_v_d.append((i[0],i[1].replace(",",".")))
+         if i[1] == None:
+             list_v_d.append((i[0],i[1]))
+         else:
+             list_v_d.append((i[0],i[1].replace(",",".")))
     return list_v_d
 
 list_curr_val = get_curr_val(list_match)
@@ -75,7 +78,7 @@ list_curr_float = []
 def str_to_float(list_c_d):
     list_c_f = []
     for i in list_c_d:
-        if i[1] == "can't get value":
+        if i[1] == None:
             list_c_f.append((i[0],i[1]))
         else:
             list_c_f.append((i[0], float(i[1])))
@@ -134,7 +137,7 @@ assert abb_to_sy("RUB") == "₽"
 assert abb_to_sy("CNY") == "¥"
 
 exchange = list_to_dict(list_curr_float)
-print (exchange)
+#print (exchange)
 
 #add date 
 date_v = get_value(date)
