@@ -144,9 +144,3 @@ exchange.append({'date':date_v})
 exchange_json = json.dumps(exchange, ensure_ascii=False)
 print(exchange_json)
 
-def show(u, d, cs):
-    print("---------------------------")
-    print(f"{cs} BCV = {u} ")
-    print(f"{d}")
-    print("---------------------------")
-
