@@ -3,7 +3,7 @@ import re
 import json
 
 bcv = "http://www.bcv.org.ve/"
-exchange = []
+#exchange = []
 
 try:
     content = urlopen(bcv)
@@ -89,11 +89,10 @@ list_curr_float = str_to_float(list_curr_dot)
 
 #convert list to dict
 def list_to_dict(list_cf):
-    list_exc = []
+    cd = {}
     for i in list_cf:
-        cd = {'currency': abb_to_c(i[0]), 'val_ves': i[1], 'abb':i[0], 'symbol': abb_to_sy(i[0])}
-        list_exc.append(cd)
-    return list_exc
+        cd[i[0].lower()] = i[1]
+    return cd
 
 # Str -> Str
 # Given an abb return the name of currency abbreviation
@@ -141,8 +140,8 @@ exchange = list_to_dict(list_curr_float)
 
 #add date 
 date_v = get_value(date)
-exchange.append({'date':date_v})
-
+exchange['date'] = date_v
+print(exchange)
 #convert into  json
 exchange_json = json.dumps(exchange, ensure_ascii=False)
 print(exchange_json)
