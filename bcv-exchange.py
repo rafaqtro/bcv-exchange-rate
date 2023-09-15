@@ -22,7 +22,7 @@ date = re.search(r'<span \w+=".+">(\w+, \d+ \w+  \d+)</span>', rest_of_text)
 
 def match_curr(currency, text):
     if currency == "EUR" or currency == "CNY":
-        posn = text.find('<span> '+currency+'</span>	 </div>')
+        posn = text.find('<span> '+currency+' </span>	 </div>')
         rest_text = text[posn:]
         curr_val = (currency, re.search(r'<strong> (\d+,\d+) </strong>', rest_text))
     elif currency == "TRY" or currency == "RUB" or currency == "USD":
