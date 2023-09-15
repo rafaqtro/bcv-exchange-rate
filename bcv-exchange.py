@@ -3,6 +3,11 @@ import re
 import json
 
 bcv = "http://www.bcv.org.ve/"
+currency_list = ['EUR', 'CNY', 'TRY', 'RUB', 'USD']
+list_match = []
+list_curr_val = []
+list_curr_dot = []
+list_curr_float = []
 
 try:
     content = urlopen(bcv)
@@ -30,10 +35,6 @@ def match_curr(currency, text):
         curr_val = (currency, re.search(r'<strong> (\d+,\d+) </strong>', rest_text))
     return curr_val
 
-
-currency_list = ['EUR', 'CNY', 'TRY', 'RUB', 'USD']
-list_match = []
-
 def match_curr_all(c_list,text_d,match_l):
     for c in c_list:
         match_l.append(match_curr(c,text_d))
@@ -47,15 +48,11 @@ def get_value(re_match):
         value = None
     return value
 
-list_curr_val = []
-
 def get_curr_val(list_c_re):
     list_v = []
     for i in list_c_re:
         list_v.append((i[0],get_value(i[1])))
     return list_v
-
-list_curr_dot = []
 
 def replace_to_dot(list_v):
     list_v_d = []
@@ -68,8 +65,6 @@ def replace_to_dot(list_v):
 
 list_curr_val = get_curr_val(list_match)
 list_curr_dot = replace_to_dot(list_curr_val)
-
-list_curr_float = []
     
 def str_to_float(list_c_d):
     list_c_f = []
@@ -88,8 +83,15 @@ def list_to_dict(list_cf):
     for i in list_cf:
         cd[i[0].lower()] = i[1]
     return cd
-
-
+# get all match
+match_curr_all(currency_list, text_decode, list_match)	
+# get curencies values
+list_curr_val = get_curr_val(list_match)
+# replace "," to "." on every curency value
+list_curr_dot = replace_to_dot(list_curr_val)
+# convert currency value from string to float
+list_curr_float = str_to_float(list_curr_dot)
+# convert list to  dict
 exchange = list_to_dict(list_curr_float)
 
 #add date 
