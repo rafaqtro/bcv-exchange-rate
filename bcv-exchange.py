@@ -39,8 +39,6 @@ def match_curr_all(c_list,text_d,match_l):
     for c in c_list:
         match_l.append(match_curr(c,text_d))
 
-match_curr_all(currency_list, text_decode, list_match)	
-        
 def get_value(re_match):
     if re_match:
         value = re_match.group(1)
@@ -62,9 +60,6 @@ def replace_to_dot(list_v):
          else:
              list_v_d.append((i[0],i[1].replace(",",".")))
     return list_v_d
-
-list_curr_val = get_curr_val(list_match)
-list_curr_dot = replace_to_dot(list_curr_val)
     
 def str_to_float(list_c_d):
     list_c_f = []
@@ -75,14 +70,13 @@ def str_to_float(list_c_d):
             list_c_f.append((i[0], float(i[1])))
     return list_c_f
 
-list_curr_float = str_to_float(list_curr_dot)
-
 #convert list to dict
 def list_to_dict(list_cf):
     cd = {}
     for i in list_cf:
         cd[i[0].lower()] = i[1]
     return cd
+
 # get all match
 match_curr_all(currency_list, text_decode, list_match)	
 # get curencies values
