@@ -79,12 +79,16 @@ def list_to_dict(list_cf):
 
 # get all match
 match_curr_all(currency_list, text_decode, list_match)	
+
 # get curencies values
 list_curr_val = get_curr_val(list_match)
+
 # replace "," to "." on every curency value
 list_curr_dot = replace_to_dot(list_curr_val)
+
 # convert currency value from string to float
 list_curr_float = str_to_float(list_curr_dot)
+
 # convert list to  dict
 exchange = list_to_dict(list_curr_float)
 
